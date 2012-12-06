@@ -1,0 +1,1 @@
+Just include the .dll and header file in your include path as shown in the example program, and use the ImageDownloader::WebImageDownloader class to download the images you want. Just pass the word you want to search for images with to the function.
