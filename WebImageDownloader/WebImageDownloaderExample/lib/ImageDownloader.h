@@ -11,11 +11,20 @@ namespace ImageDownloader {
 	public:
 		void DownloadImages(char *query)
 		{
-			std::string imageDownloader = WhereIsMyExe();
-			imageDownloader.erase(imageDownloader.end() - 10, imageDownloader.end());
-			imageDownloader += "WebImageDownloader.exe";
-			imageDownloader = "\"" + imageDownloader + "\" " + query;
-			system(imageDownloader.c_str());
+			std::string imageDownloaderName = WhereIsMyExe();
+			int pathRemove = 0;
+			for(int i = imageDownloaderName.length() - 1; i > 0; i--)
+			{
+				if(imageDownloaderName[i] == '\\')
+				{
+					break;
+				}
+				pathRemove++;
+			}
+			imageDownloaderName.erase(imageDownloaderName.end() - pathRemove, imageDownloaderName.end());
+			imageDownloaderName += "WebImageDownloader.exe";
+			imageDownloaderName = "\"" + imageDownloaderName + "\" " + query;
+			system(imageDownloaderName.c_str());
 		}
 	private:
 		std::string WhereIsMyExe()
